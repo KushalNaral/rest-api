@@ -1,0 +1,88 @@
+```gitignore
+# =========================
+# Environment
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Go
+# =========================
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.prof
+coverage.out
+coverage.html
+
+# Go workspace
+go.work
+go.work.sum
+
+# Build output
+/bin/
+/dist/
+/build/
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# IDEs
+# =========================
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+*~
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+temp/
+.cache/
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Testing
+# =========================
+.coverprofile
+
+# =========================
+# Local databases
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Generated binaries
+# =========================
+rest-api
+```
