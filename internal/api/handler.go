@@ -10,14 +10,36 @@ import (
 var BaseUrl = "/api/"
 
 func RegisterBaseRoutes(cfg *config.Config) http.Handler {
-
 	root := http.NewServeMux()
-	apiVersion := cfg.ApiVersion
 
-	v1 := http.NewServeMux()
-	registerHealthRoutes(v1)
+	api := http.NewServeMux()
+	registerHealthRoutes(api)
 
-	root.Handle(BaseUrl+apiVersion+"/", http.StripPrefix(BaseUrl+apiVersion, v1))
+	apiPrefix := BaseUrl + cfg.ApiVersion
+
+	root.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/" {
+			http.NotFound(w, r)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+
+		response := struct {
+			APIVersion string `json:"apiVersion"`
+			Message    string `json:"message"`
+		}{
+			APIVersion: cfg.ApiVersion,
+			Message:    "OK",
+		}
+
+		if err := json.NewEncoder(w).Encode(response); err != nil {
+			http.Error(w, "failed to encode response", http.StatusInternalServerError)
+		}
+	})
+
+	root.Handle(apiPrefix+"/", http.StripPrefix(apiPrefix, api))
 
 	return root
 }
