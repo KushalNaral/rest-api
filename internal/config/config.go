@@ -16,6 +16,7 @@ type Config struct {
 	GooseDBString     string
 	GooseMigrationDir string
 	GooseTable        string
+	CorsAllowOrigin   string
 }
 
 func NewConfig(envPath string) (*Config, error) {
@@ -33,6 +34,8 @@ func NewConfig(envPath string) (*Config, error) {
 		GooseDBString:     os.Getenv("GOOSE_DBSTRING"),
 		GooseMigrationDir: os.Getenv("GOOSE_MIGRATION_DIR"),
 		GooseTable:        os.Getenv("GOOSE_TABLE"),
+
+		CorsAllowOrigin: os.Getenv("CORS_ALLOWED_ORIGIN"),
 	}
 
 	if cfg.DBURL == "" {
@@ -61,6 +64,10 @@ func NewConfig(envPath string) (*Config, error) {
 
 	if cfg.GooseMigrationDir == "" {
 		return nil, fmt.Errorf("GOOSE_MIGRATION_DIR is required")
+	}
+
+	if cfg.CorsAllowOrigin == "" {
+		cfg.CorsAllowOrigin = "http://localhost:5173"
 	}
 
 	return cfg, nil

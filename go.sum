@@ -18,6 +18,8 @@ github.com/thecodearcher/limen v0.1.4 h1:8Ly9BvYHF06a0EZPS8RrHKatEsH4NqYSIk13U76
 github.com/thecodearcher/limen v0.1.4/go.mod h1:JCYwREDExWflPtKRNjWCV1K0WfN0ZfQTsP6ZVTHT+pE=
 github.com/thecodearcher/limen/adapters/sql v0.1.2 h1:KNe3KS+g6KXNOYXI7GHFDSLE2F8nEOAttx3h7kFOYyg=
 github.com/thecodearcher/limen/adapters/sql v0.1.2/go.mod h1:up/cNYDXJq0O5z6xWCEJHbXdOcb0XLR9KC4xPKQ0x3I=
+github.com/thecodearcher/limen/plugins/credential-password v0.1.4 h1:NqUNeSxzCcXaZsPUeAdkpKy4WB6PvHik0cr34K6h+Ww=
+github.com/thecodearcher/limen/plugins/credential-password v0.1.4/go.mod h1:PVpulI7aCsmKAzyUpHPS821iOZEKSQB82l+2BEGJjYk=
 go.uber.org/multierr v1.11.0 h1:blXXJkSxSSfBVBlC76pxqeO+LN3aDfLQo+309xJstO0=
 go.uber.org/multierr v1.11.0/go.mod h1:20+QtiLqy0Nd6FdQB9TLXag12DsQkrbs3htMFfDN80Y=
 golang.org/x/crypto v0.48.0 h1:/VRzVqiRSggnhY7gNRxPauEQ5Drw9haKdM0jqfcCFts=

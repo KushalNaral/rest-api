@@ -11,6 +11,7 @@ require (
 	github.com/sethvargo/go-retry v0.3.0 // indirect
 	github.com/thecodearcher/limen v0.1.4 // indirect
 	github.com/thecodearcher/limen/adapters/sql v0.1.2 // indirect
+	github.com/thecodearcher/limen/plugins/credential-password v0.1.4 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.52.0 // indirect
 	golang.org/x/sync v0.21.0 // indirect
