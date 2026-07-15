@@ -3,24 +3,25 @@ package api
 import (
 	"encoding/json"
 	"net/http"
+	"rest-api/internal/auth"
 	"rest-api/internal/config"
 	"time"
 )
 
 var BaseUrl = "/api/"
 
-func RegisterBaseRoutes(cfg *config.Config, authHandler http.Handler) http.Handler {
+func RegisterBaseRoutes(cfg *config.Config, pool *auth.AuthPool) http.Handler {
 	root := http.NewServeMux()
-	api := http.NewServeMux()
-
-	registerHealthRoutes(api)
 
 	apiPrefix := BaseUrl + cfg.ApiVersion
 
+	api := registerAPIRoutes(cfg)
+	authAPI := auth.RegisterAuthRoutes(cfg, pool)
+
 	root.HandleFunc("/", handleBaseResponse(cfg))
 	root.HandleFunc(apiPrefix, handleBaseResponse(cfg))
-	root.Handle(apiPrefix+"/auth/", authHandler)
 
+	root.Handle(apiPrefix+"/auth/", authAPI)
 	root.Handle(apiPrefix+"/", http.StripPrefix(apiPrefix, api))
 
 	return root
@@ -31,7 +32,14 @@ type HealthResponse struct {
 	Timestamp time.Time `json:"timestamp"`
 }
 
+func registerAPIRoutes(cfg *config.Config) http.Handler {
+	mux := http.NewServeMux()
+	registerHealthRoutes(mux)
+	return mux
+}
+
 func registerHealthRoutes(mux *http.ServeMux) {
+
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
