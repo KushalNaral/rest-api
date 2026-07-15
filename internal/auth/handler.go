@@ -22,7 +22,8 @@ func handleProfile(pool *AuthPool) http.HandlerFunc {
 
 		session, err := pool.Auth.GetSession(r)
 		if err != nil {
-			http.Error(w, "error : not authenticated", http.StatusInternalServerError)
+			http.Error(w, "error : not authenticated", http.StatusUnauthorized)
+			return
 		}
 
 		json.NewEncoder(w).Encode(map[string]any{"user": session.User.Raw()})

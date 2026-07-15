@@ -17,6 +17,12 @@ type Config struct {
 	GooseMigrationDir string
 	GooseTable        string
 	CorsAllowOrigin   string
+	RabbitMQURL       string
+	SMTPHost          string
+	SMTPPort          string
+	SMTPUser          string
+	SMTPPass          string
+	SMTPFrom          string
 }
 
 func NewConfig(envPath string) (*Config, error) {
@@ -36,6 +42,12 @@ func NewConfig(envPath string) (*Config, error) {
 		GooseTable:        os.Getenv("GOOSE_TABLE"),
 
 		CorsAllowOrigin: os.Getenv("CORS_ALLOWED_ORIGIN"),
+		RabbitMQURL:     os.Getenv("RABBITMQ_URL"),
+		SMTPHost:        os.Getenv("SMTP_HOST"),
+		SMTPPort:        os.Getenv("SMTP_PORT"),
+		SMTPUser:        os.Getenv("SMTP_USER"),
+		SMTPPass:        os.Getenv("SMTP_PASS"),
+		SMTPFrom:        os.Getenv("SMTP_FROM"),
 	}
 
 	if cfg.DBURL == "" {
